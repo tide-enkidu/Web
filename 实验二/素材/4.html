@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>表格练习</title>
+    <style type="text/css">
+      table{
+        /* margin: 0 auto; */
+        border: 1px solid blue;
+        border-collapse: collapse;
+      }
+      th,td{
+        text-align: center;
+        border: 1px solid blue;
+      }
+      caption{
+        text-align: left;
+      }
+      .bg{
+        text-align: center;
+        background-image: url(images/pp.jpg);
+        width: 90px;
+        height: 70px;
+        font-weight: bold;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <caption>
+        这是表格的标题
+      </caption>
+      <tr>
+        <td colspan="3">这个单元格跨列了</td>
+      </tr>
+      <tr>
+        <td rowspan="2" class="bg">这个单元格跨行了</td>
+        <td>【2,2】</td>
+        <td>【2,3】</td>
+      </tr>
+      <tr>
+        <td>【3,2】</td>
+        <td>【3,3】</td>
+      </tr>
+    </table>
+  </body>
+</html>
