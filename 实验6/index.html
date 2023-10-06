@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博雅互动-首页</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <style>
+        body{
+            font-size: 14px;
+            font-family: "Microsoft YaHei","SimSun";
+        }
+        .inner_c{
+            width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        #header{
+            background-color: #191D3A;
+            height: 58px;
+        }
+        #logo{
+            float: left;
+            margin-right: 40px;
+        }
+        #nav{
+            float: left;
+        }
+        #nav ul li{
+            float: left;
+            width: 100px;
+        }
+        #nav ul li a{
+            display: block;
+            line-height: 58px;
+            text-align: center;
+            text-decoration: none;
+            color: #aaaaaa;
+        }
+        #nav ul li a.current{
+            color: rgb(255, 255, 255);
+            background-color: rgb(20, 155, 2);
+        }
+        #nav ul li a:hover{
+            color: rgb(255, 255, 255);
+            background-color: rgb(20, 155, 2)            
+        }
+        #join{
+            float: left;
+        }
+        #join a{
+            width: 100px;
+            /* height: 32px; */
+            display: block;
+            background-color: rgb(13, 248, 52);
+            margin: 13px 30px; /*根据logo和nav宽高计算出剩余宽度和高度使其居中*/
+            text-align: center;
+            text-decoration: none;
+            line-height:32px ;
+            border-radius: 4px;
+            color: white;
+        }
+        #banner{
+            background: url(./images/banner.jpg) no-repeat center;
+            height: 485px; /*原图高度为483px 为使其上下留白1px*/
+        }
+        a{
+            text-decoration: none;
+        }
+        
+        #content ul{
+            display: flex;
+            justify-content: space-between;/*使图片段落自动调整间隔*/
+            padding: 50px 0px; /*只调整上下间隔*/
+            text-align: center;
+        }
+        #content ul li p{
+            padding: 10px 0px;  /*调整段落间间隔*/
+        }
+        #content ul li p img{
+            width: 218px;
+        }
+        #content ul li a{
+            font-size: 12px;
+            color: #38b774;
+            padding-right: 12px;    /*设置文字与背景三角形的间隔*/
+            background: url(images/sanjiaoxing.png) no-repeat right;/*设置三角形居右*/
+        }
+        /* #content ul li a :hover{
+            text-decoration: underline;
+        }    */
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="inner_c">
+            <div id="logo"><img src="./images/logo.png" alt=""></div>
+            <div id="nav">
+                <ul>
+                    <li><a class="current" href="">首页</a></li>
+                    <li><a href="">博雅游戏</a></li>
+                    <li><a href="">博雅新闻</a></li>
+                    <li><a href="">关于我们</a></li>
+                    <li><a href="">客服中心</a></li>
+                    <li><a href="">投资者关系</a></li>
+                </ul>
+            </div>
+            <div id="join"><a href="">加入我们</a></div>
+            <div id="logo"></div>
+        </div>
+    </div>
+    <div id="banner"></div>
+    <div id="content">
+        <div class="inner_c">
+            <ul>
+                <li>
+                    <p><img src="./images/pro1.jpg" alt=""></p>
+                    <h3>BPT宣传片</h3>
+                    <p><a href="">点击播放</a></p>
+                </li>
+                <li>
+                    <p><img src="./images/pro2.jpg" alt=""></p>
+                    <h3>BPT宣传片</h3>
+                    <p><a href="">点击播放</a></p>
+                </li>
+                <li>
+                    <p><img src="./images/pro3.jpg" alt=""></p>
+                    <h3>BPT宣传片</h3>
+                    <p><a href="">点击播放</a></p>
+                </li>
+                <li>
+                    <p><img src="./images/pro4.jpg" alt=""></p>
+                    <h3>BPT宣传片</h3>
+                    <p><a href="">点击播放</a></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
