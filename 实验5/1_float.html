@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>1_float</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #1d7fa7;
+      }
+      img {
+        display: block;
+      }
+      #container{
+        width: 867px;
+        margin: auto;
+      }
+      #sidebar{
+        float: left;
+      }
+      #news{
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="logo"><img src="layout/logo.png" /></div>
+      <div id="nav"><img src="layout/nav.png" /></div>
+      <div id="main">
+        <div id="sidebar" class="left"><img src="layout/sidebar.png" /></div>
+        <div id="content" class="right">
+          <div id="news" class="left"><img src="layout/news.png" /></div>
+          <div id="about" class="left"><img src="layout/about.png" /></div>
+          <div id="estate"><img src="layout/estate.png" /></div>
+        </div>
+      </div>
+      <div id="footer"><img src="layout/footer.png" /></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2</title>
+    <style>
+        body{
+          font-size: 12px;
+          font-family:"SimHei";
+          background: linear-gradient(rgb(0, 112, 156), rgb(0, 3, 14));
+        }
+
+        a{
+          display: block;
+          text-decoration: none;
+        }
+        *{
+          margin: 0;
+          padding: 0;
+        }
+        .inner_c{
+          width: 867px;
+          margin: 0 auto;
+          overflow: hidden;
+          background-color: aliceblue;
+        }
+        hr{
+        text-align: center;
+        width: 180px;
+        margin: 10px 0;
+        }
+      /* #container{
+        width: 867px;
+        overflow: hidden;
+        margin: 0 auto;
+      } */
+      /* #nav{
+        width: 867px;
+      } */
+      #nav > ul {
+        background-image: url(images/linkbg.jpg);
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 0 ;
+        /* justify-content: space-between; */
+
+      }
+      #nav > ul >li{
+        width: 123px;
+        float: left;
+      }
+
+      #nav > ul > li >a{
+        display: block;
+        color: white;
+        line-height: 51px;
+        text-decoration: none;
+        text-align: center;
+         
+      }
+      #nav > ul > li::marker{
+        content: '|';
+        color: rgb(122, 131, 141);
+      }
+      #nav > ul > li >a:hover{
+        color:rgb(209, 127, 3)
+      }
+
+      #sidebar{
+        width: 251px;
+        /* height: 490px; */
+        float: left; /* sidebar 、mews、about、estate均使用左浮动，目的：让块级元素不独占一行*/
+        /* border-right: solid 1px; */
+        margin-left: 20px;
+      }
+      #r{
+        margin-left: 3px;
+      }
+      #sidebar>ul>li{
+        margin-top: 20px;
+        list-style-type: none;
+      }
+      #sidebar>ul>li>p>a{
+        padding: 5px;
+        color: gray;
+      }
+      .line1{
+        background:gainsboro;/*背景色为浅灰色*/
+        width: 2px;/*设置宽高*/
+        height:400px;
+        position:relative;/*调整位置*/
+        top: 75px;
+        float:right;/*让此div与前面的并排显示*/
+        right: 10px;
+      }
+
+      #news{
+          width: 313px;
+          /* height: 300px; */
+          float: left;
+          margin-top: 20px;
+      }
+      .line2{
+        background:gainsboro;/*背景色为浅灰色*/
+        width: 1.5px;/*设置宽高*/
+        height:230px;
+        position:relative;/*调整位置*/
+        top: 37px;
+        float:right;/*让此div与前面的并排显示*/
+        right: 20px;
+      }
+      #news>ul{
+        /* list-style-type:none;
+        margin: 20px 0; */
+        line-height: 20px;
+        margin-top: 10px;
+        margin-left: 30px;
+        list-style: none;
+      }
+      /* #news>ul>li{
+        margin-top: 10px;
+      } */
+      .news_type{
+        list-style-image: url(images/ico.gif);
+      }
+      /* .news_type>p{
+        padding: 2px 0;
+      } */
+      .news_type>p>a{
+        color: gray;
+      }
+      .news_color{
+        color: rgb(238, 170, 25);
+      }
+      
+      #about{
+          margin-top: 20px;
+          width: 244px;
+          /* height: 300px; */
+          float: left;
+          text-align: justify;
+          /* display: block; */
+      }
+      #about>p{
+        padding: 5px 0;
+        color: gray;
+        font-size: smaller;
+      }
+      #estate{
+          width: 530px;
+          height: 190px;
+          float: left;
+          margin:30px;
+          text-align: justify;
+          color: gray;
+      }
+      #r1{
+        text-align: center;
+        width: 530px;
+      }
+      #es{
+        float: left;
+      }
+      #int>p{
+        padding:4px 0;
+      }
+
+      
+      #footer {
+          height: 110px;
+          clear: both; /*清除浮动*/
+          background-image: url(images/footer1.gif);
+      }
+      #f1{
+          padding: 10px 0;
+      }
+      #f2{
+        font-size: smaller;
+        color: white;
+        float: right;
+        margin-right: 10px;
+      }
+    </style>
+</head>
+<body>
+    <div id="container">
+      <div class="inner_c">
+        <div id="logo"><img src="layout/logo.png" /></div>
+        <div id="nav">
+            <ul>
+                <li><a href="">首页</a></li>
+                <li><a href="">关于我们</a></li>
+                <li><a href="">新闻动态</a></li>
+                <li><a href="">楼盘展示</a></li>
+                <li><a href="">人才招聘</a></li>
+                <li><a href="">联系我们</a></li>
+                <li><a href="">留言反馈</a></li>
+            </ul>
+        </div>
+        <div id="sidebar">
+          <div class="line1"></div>
+          <ul>
+            <li>
+              <p><img src="images/wel1.gif" alt=""></p>
+              <p><img src="images/wel2.gif" alt=""></p>
+              <p>
+                <a href="">温州广厦</a>
+                <a href="">中国知名房地产企业</a>
+                <a href="">中国建设行业信用3A级单位</a>
+                <a href="">被中华全国工商业联合会住宅产业</a>
+                <a href="">商会推选为理事会员</a>
+                <a href="">消费者信得过、放心开发商</a>
+                <a href="">重质量创品牌优秀单位</a>
+                <a href="">质量、服务诚信示范单位</a>
+                <a href="">被龙湾建设局评为先进单位</a>
+              </p>
+              <p><img src="images/more.gif" alt=""></p>
+            </li>
+            <hr id="r">
+            <li>
+              <p>
+                <a href="">三盘领海</a>
+                <a href="">全国最佳景观别墅</a>
+                <a href="">全国100个顶级别墅区之一</a>
+              </p>
+              <p><img src="images/more.gif" alt=""></p>
+            </li>
+          </ul>
+        </div>
+        <div id="news">
+          <div class="line2"></div>
+          <img src="images/news.gif" alt="">
+          <ul>
+        
+            <li>
+              <li class="news_type">
+                <p class="news_color"><b>2007-9-28 9:27:21</b></p>
+                <p><a href="">央行：第2套住房贷款首付款比例不得低于40%</a></p>
+              </li>
+              <li class="news_type">
+                <p class="news_color"><b>2007-8-20 10:41:23</b></p>
+                <p><a href="">智能化工程招标</a></p>
+              </li>
+              <li class="news_type">
+                <p class="news_color"><b>2006-12-8 16:48:41</b></p>
+                <p><a href="">温州NO.1豪宅即将出炉</a></p>
+              </li>
+              <li class="news_type">
+                <p class="news_color"><b>2006-8-7 16:06:00</b></p>
+                <p><a href="">塘下金河大厦8月份即将预验收，并于年底交付…</a></p>
+              </li>
+              <li class="news_type">
+                <p class="news_color"><b>2006-8-7 16:05:09</b></p>
+                <p><a href="">三盘领海别墅区已开始预登记</a></p>
+                <p><img src="images/more.gif" alt=""></p>
+              </li >
+            </li>
+          </ul>
+        </div>
+        <div id="about">
+          <p><img src="images/about.gif" alt=""></p>
+          <p><img src="images/aboutimg.gif" alt=""></p>
+          <p>温州广厦建设开发有限公司,法定代表人:余文龙:企业类型:有限责任公司:经营范围:房地产开发(凭资质证经营)。建筑材料销售。公司现有职工40余人,其中专业技术人员28人(高级职称7人,中级职称21人)...
+          </p>
+          <p><img src="images/more.gif" alt=""></p>
+        </div>
+        <div id="estate">
+          <hr id="r1"><br>
+          <div id="es"><img src="images/estate.gif" alt=""></div>
+          <div><img src="images/estate1.gif" alt=""></div>
+          <div id="int">
+            <p>三盘·领海</p>
+            <p>三盘领海坐落在温州著名风景区--洞头三盘岛西边,海中湖中间,也是温州到洞头县城的必经之路,与温州市区50公里,与洞头县城只需3分钟..
+            </p>
+            <p><img src="images/more.gif" alt=""></p>
+          </div>
+        </div>
+        <div id="footer">
+          <div id="f1"><img src="images/footer2.gif" alt=""></div>
+          <div id="f2">COPYRIGHT©WZGS.NET,2006,All RIGHTS RESERVED
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
