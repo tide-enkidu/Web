@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一日游</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <style>
+        body{
+            font-size: 14px; /*调整字号*/
+            font-family: 'Microsoft YaHei','SimSun'; /*调整字体*/
+        }
+        hr{
+            margin: 10px 0; /*调整水平分割线上下边框大小*/
+            color: #ccc;
+        }
+        /*设置版心样式*/
+        .inner_c{
+            width: 980px;   /*调整版心宽度*/
+            margin: 0 auto; /*水平居中*/
+        }
+        #header{
+            margin: 10px 0; /*设置上下边框*/
+            overflow: hidden; /*以防浮动塌陷*/
+        }
+        #logo{
+            float: left; /*使用浮动布局*/
+            margin-right: 40px; /*调整右间隔*/
+        }
+        #nav{
+            float: right; /*使用浮动布局*/
+        }
+        #nav>ul>li{
+            float: left; /*通过浮动布局使列表间横向排列*/
+            width: 100px;   /*设置列表元素宽度*/
+        }
+        #nav>ul>li>a{
+            display: block; /*将超链接设置为块级元素*/
+            text-align: center; /*使超链接文字水平居中*/
+            text-decoration: none; /*取消超链接下划线*/
+            color: #888888;
+            border-right: 1px solid #888888; /*设置nav垂直分割线*/
+        }
+        #nav>ul>li>a :hover{
+            color: black; /*设置鼠标悬停颜色*/
+        }
+
+        /*设置最后一个li元素的a*/
+        #nav>ul>li:last-child a{
+            border-right: none; /*取消垂直分割线*/
+        }
+
+        #banner img{
+            /*float: left; 使照片浮动*/
+            width: 696px;
+        }
+        #intro{
+            float: right; /*将文字介绍浮动至右*/
+            width: 260px;
+            color: #888888;
+        }
+        #intro h1{
+            text-align: center; /*将标题居中显示*/
+            color: orange;  /*字体颜色*/
+            font-size: 20px;    /*字体大小*/
+            letter-spacing: 10px; /*字体间隔*/
+            font-weight: bold; /*加粗*/
+        }
+        /*调整h1中间区块元素*/
+        #intro h1 span{
+            font-size: 28px; /*调整字体大小*/ 
+        }
+        #intro>p{
+            text-indent: 2em; /*调整缩进为两个单位*/
+            line-height: 1.5em; /*调整行高*/
+            margin: 1em 0; /* 调整段落间的边框大小使其间隔开一个单位 */
+        }
+        #intro>p>a{
+            text-decoration: none;
+            color:orange;
+        }
+        #comment ul li{
+            overflow: hidden; /*防止塌陷*/
+            border-top: 1px dotted #888888; /*设置顶部边框样式*/
+        }
+        /*设置comment中的ul的li的第一个元素*/
+        #comment ul li:first-child{
+            border-top: none; /*取消顶部边框*/
+        }
+        #comment ul li img{
+            float: left;    /*使照片浮动*/
+            padding: 20px;  /*设置间隔*/
+        }
+        div.commment_detail{
+            padding:  20px 10px;    /*设置评论间隔*/
+        }
+        /*评论人*/
+        span.comment_user{
+            color: orange; /*字体颜色*/
+            font-size: 16px; /*字体大小*/
+            padding-right: 50px; /*设置右间隔*/
+        }
+        /*评论时间*/
+        span.comment_time{
+            color: #888888; /*字体颜色*/
+            font-size: 12px; /*字体大小*/
+        }
+        /*评论内容*/
+        div.comment_detail p {
+            padding-top: 10px; /*设置与顶部的间隔*/
+        }
+        /*底部*/
+        #footer p{
+            text-align: center; /*文字居中*/
+            color: #888888; /*字体颜色*/
+            padding-bottom: 20px;   /*下边距*/
+        }
+    </style>
+</head>
+<body>
+    <div class="inner_c">
+        <div id="header">
+            <div id="logo"><img src="images/logo.png" alt="一日游"></div>
+            <div id="nav">
+                <ul>
+                    <li><a href="">旅游首页</a></li>
+                    <li><a href="">登录</a></li>
+                    <li><a href="">注册</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div id="banner">
+            <img src="images/banner.jpg" alt="">
+            <div id="intro">
+                <h1>说<span>旅</span>游</h1>
+                <p>
+                    伊露岛（Iru Fushi）位于马尔代夫北部环礁——诺鲁环礁（Noonu 
+                    Atoll）中，它是一座拥有醉人景色和浪漫气氛的小岛。晶莹的海水、绵白的沙滩、明媚的阳光、
+                    温馨的海边小屋、浪漫的海上落日。所有的一切似乎都为浪漫而存在，美丽而遗世独立。
+                </p>
+                <p>最佳旅游时间：1月-12月，热带海洋气候，全年皆适合旅游。12月至次年4月可避开高峰。</p>
+                <p>伊露岛沙滩屋的构造很独特，彻底的南亚风情——雪白的圆形房子，尖尖的茅草屋顶，木质的框
+                    <a href="">......[详细]</a>
+                </p>
+                <!-- 防塌陷 -->
+                <!-- <div style="clear: both;"></div> -->
+            </div>
+        </div>
+        <hr>
+        <div id="comment">
+            <ul>
+                <li>
+                    <img src="images/person1.jpg" alt="">
+                    <div class="comment_detail">
+                        <div><span class="comment_user">张三</span><span class="comment_time">2022-01-01 13:00:00</span></div>
+                        <p>
+                            第一次用途牛，太让我们惊喜了！真的很不错，行程安排的也很好!幸运的是，往返飞机都没有延误!伊露岛的美，让我们的蜜月越发美满。
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <img src="images/person2.jpg" alt="">
+                    <div class="comment_detail">
+                        <div><span class="comment_user">李四</span><span class="comment_time">2022-01-01 13:00:00</span></div>
+                        <p>
+                            岛还可以，就是沙屋有虫子，不太让人满意,水屋确实挺棒的。饭嘛，国外基本都那样吧，海鲜还行。
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <img src="images/person3.jpg" alt="">
+                    <div class="comment_detail">
+                        <div><span class="comment_user">王五</span><span class="comment_time">2022-01-01 13:00:00</span></div>
+                        <p>
+                            行程安排挺好的，挺喜欢伊露岛，岛上的人很热情，手机丢了小黑给找回来了，都很热情，会主动跟你招呼。 
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div id="footer">
+            <p>Copyright © 2013-2023一日游yiriyou.com All Rights Reserved..
+            </p>
+        </div>
+    </div>
+</body>
+</html>
