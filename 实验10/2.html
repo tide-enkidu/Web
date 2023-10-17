@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("" + 1 + 0); // "10"， 字符串连接
+      console.log("" - 1 + 0); // -1，进行算术运算，""转换为0，
+      console.log(true + false); // 1，进行算术运算，true转换为1，false转换为0
+      console.log(6 / "3"); // 2 ，算术运算， "3"转换为3
+      console.log("2" * "3"); // 6，算术运算，"2"、"3"转换为2和3
+      console.log(4 + 5 + "px");  // "9px"，从左至右先为算术运算，遇到字符串时转为字符串连接
+      console.log("$" + 4 + 5); // "$45"，字符串连接
+      console.log("4" - 2); // 2 算术运算，"4"转换为4
+      console.log("4px" - 2); // NaN 算术运算 "4px"转换为NaN
+      console.log("  -9  " + 5);  // "  -9  5" 字符串连接
+      console.log("  -9  " - 5);  //  -14 算术运算
+      console.log(null + 1);  //  1 算术运算 null转换为0
+      console.log(undefined + 1); // NaN 算术运算 undefined转换为NaN
+      console.log(" \t \n" - 2);  // -2 算术运算 '\t \n'转换为0
+      console.log(0 == true); // false 0转换为false 
+      console.log(1 == true); // true 1转换为true
+      console.log(1 === true);  // false 1的数据类型与true不同
+      console.log("a" == false);  // false "a"转换为布尔类型为true
+      console.log("" == false); // true 空串转换为布尔类型时为false
+      console.log("" === false);  // false 空串数据类型与false不同
+      console.log(undefined == null); // true undefined 和 null 都转换为false
+      console.log(undefined === null);  // false 数据类型不同
+      console.log(!3);  // false
+      console.log(!!3); // true
+      console.log(123 || null || "abc");  // 123 或运算找第一个真值并返回其值
+      console.log(0 || null || "abc");  //  "abc" 或运算找第一个真值并返回其值
+      console.log(0 || null || undefined);  // undefined  若或运算找不到真值则返回最后一个值
+      console.log(123 && null && "abc");  // null 与运算找第一个假值并返回
+      console.log(0 && null && "abc");  // 0 与运算找第一个假值并返回
+      console.log(123 && [] && "abc");  // "abc" 与运算找不到假值时返回最后一个值
+      console.log(123 ?? "abc");  // 123  已定义前者值
+      console.log(null ?? "abc"); // "abc" 未定义前者值
+    </script>
+  </body>
+</html>

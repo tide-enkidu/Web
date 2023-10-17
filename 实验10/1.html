@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      显式转换为string，通过toString和String两个方法，null和undefined无法调用toString方法
+      */
+      // 使用toString方法转换为string
+      console.log((10.01).toString()); // "10.01"
+      console.log(true.toString()); // "true"
+      console.log([1, 2, 3].toString()); // "1,2,3"
+      // 使用String方法转换为string
+      console.log(String(null));  //'null'
+      console.log(String(undefined)); //'undefined'
+
+      /*
+      显式转换为number，通过Number、parseInt和parseFloat方法
+      */
+      //使用Number方法转换为number
+      console.log(Number(" 123.56 ")); // 123.56
+      console.log(Number(" \t \n ")); // 0
+      console.log(Number("123.56px")); // NaN
+      console.log(Number(true)); // 1
+      console.log(Number(false)); // 0
+      console.log(Number(null));  // 0
+      console.log(Number(undefined)); // NaN
+      // 使用parseInt方法转换为整数
+      console.log(parseInt(" 123.56 "));  // 123 
+      console.log(parseInt(" \t \n ")); // NaN
+      console.log(parseInt("123.56px"));  //123
+      // 使用parseFloat方法转换为小数
+      console.log(parseFloat(" 123.56 "));  // 123.56
+      console.log(parseFloat(" \t \n "));   // NaN
+      console.log(parseFloat("123.56px").toFixed(1)); // 只保留1位小数 123.5
+
+      /*
+      显式转换为boolean，通过Boolean方法
+      */
+      // 使用Boolean方法将number转换为布尔值
+      console.log(Boolean(0));  // false
+      console.log(Boolean(1));  // true
+      console.log(Boolean(-1)); // true
+      console.log(Boolean(NaN));  // false
+      // 使用Boolean方法将string转换为布尔值
+      console.log(Boolean("a"));  // true
+      console.log(Boolean(" "));  // true
+      console.log(Boolean(""));   // false
+      // 使用Boolean方法将null、undefined、数组和对象转换为布尔值
+      console.log(Boolean(null)); // flase
+      console.log(Boolean(undefined));  //false
+      console.log(Boolean([])); // true
+      console.log(Boolean({})); // true
+    </script>
+  </body>
+</html>
