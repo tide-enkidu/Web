@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 练习1
+    // 生成一个在 min 到 max 之间的随机小数，然后将生成的随机数保留小数点后2位，并返回.
+    function random(min, max) {
+      res = Math.random() * (max - min) + min
+      return res.toFixed(2)
+    }
+    // 生成并返回一个在 min 到 max 之间的随机整数，并返回
+    function randomInt(min, max) {
+      min = Math.ceil(min)
+      max = Math.floor(max)
+      res = Math.floor(Math.random() * (max - min) + min)
+      return res
+    }
+    console.log(random(50, 100));
+    console.log(randomInt(50, 100));
+
+    // 练习2
+    // 在函数testString的定义中，使用内置对象String的相关方法和属性完成要求，一条注释对应一行代码：
+    function testString() {
+      let name = "zhang san";
+      // 输出字符串name的长度
+      console.log("字符串的长度是：" + name.length);
+      // 输出字符串name中的第一个字符
+      console.log("字符串中的第一个字符是：" + name[0]);
+      // 输出字符串name的最后一个字符
+      console.log("字符串中的最后一个字符是：" + name[name.length - 1]);
+      // 使用substring和indexOf方法，输出字符串name中的第一个单词
+      console.log("字符串中的第一个单词是：" + name.substring(0, name.indexOf(' ')));
+      // 使用substring和lastIndexOf方法，输出字符串name中的最后一个单词
+      console.log("字符串中的最后一个单词是：" + name.substring(name.lastIndexOf(' ')));
+    }
+    testString();
+
+    // 练习3
+    // 在函数testArray1的定义中，使用内置对象Array的相关方法和属性完成要求，一条注释对应一行代码：
+    function testArray1() {
+      // 创建一个数组 arr，里面存储有"张三"和"赵六"。
+      const arr = ['张三', '赵六']
+      console.log(arr); // ["张三", "赵六"]
+      // 将"王五"添加到数组末端。
+      arr.push('王五')
+      console.log(arr); // ["张三", "赵六", "王五"]
+      // 用 "李四" 替换掉数组最中间的元素。
+      arr[1] = '李四'
+      console.log(arr); // ["张三", "李四", "王五"]
+      // 去掉数组的第一个值并打印它。
+      console.log(arr.shift()); // "张三"
+      // 在数组前面添加"刘一"和"陈二"。
+      arr.unshift('刘一', '陈二')
+      console.log(arr); // ["刘一", "陈二", "李四", "王五"]
+      // 去掉数组的最后一个值并打印它。
+      console.log(arr.pop()); // "王五"
+      // 使用splice方法，从第三个元素开始，删掉数组两个元素，并插入："张三", "李四"
+      arr.splice(2, 1, '张三', '李四') //删一个元素和两个元素没区别 第三个元素开始往后只有一个'李四'元素
+      console.log(arr); // ["刘一", "陈二", "张三", "李四"]
+      // 使用indexOf方法，查找数组arr中 "张三" 这个元素的下标
+      console.log(arr.indexOf('张三')); // 2
+      // 使用includes方法，判断数组arr中是否包含"王五"这个元素
+      console.log(arr.includes('王五')); // false
+      // 使用reverse方法，将arr中的元素顺序反转
+      arr.reverse()
+      console.log(arr); // ["李四", "张三", "陈二", "刘一"]
+      // 使用join方法，以空格作为间隔符，将数组arr转化为字符串str
+      const str = arr.join(' ');
+      console.log(str); // "李四 张三 陈二 刘一"
+      // 使用String的split方法，以空格作为间隔符，将字符串str转换为数组并输出
+      console.log(str.split(' ')); // ["李四", "张三", "陈二", "刘一"]
+    }
+    testArray1();
+
+    // 练习4
+    // 在函数testArray2的定义中，使用内置对象Array的相关方法和属性完成要求：
+    function testArray2() {
+      const users = [
+        { id: 1, name: "张三", age: 22 },
+        { id: 2, name: "李四", age: 20 },
+        { id: 3, name: "王五", age: 21 },
+      ];
+      let arr;
+      // 使用slice方法，复制数组users的前两个元素到一个新的数组，并把新数组的值赋给arr。
+      arr = users.slice(0, 2);
+      console.log(arr); // [张三、李四]
+      // 使用concat方法，复制arr数组的所有元素，并向其中添加对象: { id: 3, name: "王五", age: 21 }，并把新数组的值赋给arr。
+      arr = arr.concat({ id: 3, name: "王五", age: 21 });
+      console.log(arr); // [张三、李四、王五]
+      // 使用find方法，在数组users中查找 id === 2 的第一个元素，并把方法返回值赋给user;
+      // const userFind = users.find(
+      //   function (item) {
+      //     return item.id === 2
+      //   }
+      // );
+      const userFind = users.find(item => item.id === 2)
+      console.log(userFind); // 李四
+      // 使用filter方法，在数组users中查找 age>20 的所有元素，并把方法返回值赋给usersFilter;
+      // const usersFilter = users.filter(
+      //   function (item) {
+      //     return item.age > 20
+      //   }
+      // );
+      const usersFilter = users.filter(item => item.age > 20)
+      console.log(usersFilter); // [张三、王五]
+      // 使用forEach方法，遍历数组users中所有的元素，并打印所有元素的id属性值   1、2、3
+      // users.forEach(
+      //   function (item) {
+      //     return console.log(item.id)
+      //   }
+      // );
+      users.forEach(item => console.log(item.id))
+      // 使用map方法，创建users中的每个元素的副本对象，并在副本对象上都增加一个属性 role: 'student'，(提示：Object.assign)，把map方法返回值赋给usersMap;
+      // const usersMap = users.map(
+      //   function (item) {
+      //     return Object.assign({ role: 'student' }, item)
+      //   }
+      // );
+      const usersMap = users.map(item => Object.assign({ role: 'student' }, item))
+      console.log(usersMap); // [张三、李四、王五]，每个对象都有role属性
+      // 使用sort方法，将users中的元素按age属性值排序
+      // users.sort(
+      //   function (a, b) {
+      //     return a.age - b.age
+      //   }
+      // );
+      users.sort((a, b) => a.age - b.age)
+      console.log(users); // [李四、张三、王五]
+    }
+    testArray2();
+  </script>
+</body>
+
+</html>
