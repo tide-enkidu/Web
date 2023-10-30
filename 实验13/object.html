@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    div {
+      width: 1210px;
+      margin: 200px auto;
+      color: red;
+      text-align: center;
+      font: 600 30px/30px "simsun";
+    }
+  </style>
+</head>
+
+<body>
+  <div id="time"></div>
+  <script>
+    // 练习1
+    function testSet() {
+      const arr = ['张三', '李四', '王五', '张三'];
+      const nameSet = new Set(arr)
+      console.log(nameSet)
+      const nameArr = [...nameSet]
+      console.log(nameArr)
+    }
+    testSet()
+    // 练习2
+    function testObject() {
+      let salaries = {
+        John: 100,
+        Pete: 300,
+        Mary: 250,
+      }
+      console.log(Object.keys(salaries))
+      console.log(Object.values(salaries))
+      const entries = Object.entries(salaries)
+      console.log(entries)
+      let nameTop = null
+      let salaryTop = 0
+      entries.forEach(([name, salary]) => {
+        if (salary > salaryTop) {
+          salaryTop = salary
+          nameTop = name
+        }
+      }
+      )
+      console.log(nameTop)
+    }
+    testObject()
+
+    // 练习3
+    const divTime = document.getElementById('time');
+    const endTime = new Date('2023-10-31 20:00:00').getTime()
+    const timer = setInterval(countDown, 1000)
+    function countDown() {
+      const remainTime = endTime - Date.now()
+      if (remainTime < 0) {
+        div.innerHTML = '离活动还有00天00小时00分00秒'
+        clearInterval(timer)
+        return
+      }
+      let day = parseInt(remainTime / 1000 / 60 / 60 / 24) //天
+      let hour = parseInt((remainTime / 1000 / 60 / 60) % 24)
+      let minu = parseInt((remainTime / 1000 / 60) % 60)
+      let sec = parseInt((remainTime / 1000) % 60)
+      day = day < 10 ? '0' + day : day
+      hour = hour < 10 ? '0' + hour : hour
+      minu = minu < 10 ? '0' + minu : minu
+      sec = sec < 10 ? '0' + sec : sec
+      divTime.innerHTML = `离活动还有${day}天${hour}小时${minu}分${sec}秒`
+    }
+    // 练习4
+    function deepCopy(source) {
+      const json = JSON.stringify(source)
+      console.log(json)
+      return JSON.parse(json)
+    }
+    const obj1 = {
+      name: 'zhangsan',
+      age: 20,
+      info: {
+        desc: 'student',
+      },
+      color: ['red', 'blue', 'green'],
+    }
+    //浅拷贝
+    const obj2 = { ...obj1 }
+    //深拷贝
+    const obj3 = deepCopy(obj1)
+    obj1.info.desc = 'teacher'
+    console.log(obj2.info.desc) // teacher
+    console.log(obj3.info.desc) // student
+  </script>
+</body>
+
+</html>
