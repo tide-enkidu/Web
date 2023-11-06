@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>原型链与继承示例练习</title>
+</head>
+
+<body>
+  <script>
+    // 定义构造函数Person
+    function Person(name, age) {
+      this.name = name; //设置对象属性name的值，实例非共享属性
+      this.age = age;
+      // 设置Person函数原型对象属性count的值+1
+      Person.prototype.count++
+    }
+    // 给Person.prototype添加count属性，记录创建Person的对象数量，实例共享属性
+    Person.prototype.count = 0;
+    // 为Person.prototype添加printAge方法，实例共享方法
+    Person.prototype.printAge = function () {
+      console.log(this.age);
+    }
+    // 为Person.prototype添加printName方法，实例共享方法
+    Person.prototype.printName = function () {
+      console.log(this.name);
+    }
+    // 为Person.prototype添加printInfo方法，实例共享方法
+    Person.prototype.printInfo = function () {
+      this.printAge();
+      this.printName();
+    }
+    // 实例化Person构造函数，并赋值给变量s1
+    const p1 = new Person('张三', 20);
+    // 调用p1的printInfo方法
+    p1.printInfo();
+    // 打印p1
+    console.log(p1);
+    // 打印p1的__proto__属性是否等于Person.prototype
+    console.log(p1.__proto__ === Person.prototype); // true
+    // 打印Person.prototype的__proto__属性是否等于Object.prototype
+    console.log(Person.prototype.__proto__ === Object.prototype); // true
+    // 定义构造函数Student
+    function Student(name, age, school) {
+      Person.call(this, name, age); // 调用Person构造函数，并传入参数
+      this.school = school;
+    }
+    Student.prototype.__proto__ = Person.prototype; // 设置Student函数原型对象等于Person.prototype
+    Student.prototype.printSchool = function () {
+      console.log(this.school);
+    }
+    Student.prototype.printInfo = function () {
+      Person.prototype.printInfo.call(this); // 调用Person.prototype.printInfo方法
+      this.printSchool();
+    }
+    // 实例化Student构造函数，并赋值给变量s1
+    const s1 = new Student('李四', 20, '中山学院');
+    // 调用s1的printInfo方法
+    s1.printInfo();
+    console.log(s1.count);
+    console.log(s1); 
+  </script>
+</body>
+
+</html>

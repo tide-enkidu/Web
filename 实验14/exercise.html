@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>自定义类型和对象</title>
+</head>
+
+<body>
+  <script>
+    // 自定义一个类型 Pet，要求 Pet 类型拥有实例非共享属性 id 和 price，拥有实例共享属性 count(统计 Pet 对象的数量)
+    // 拥有实例共享方法 printID 和 printPrice，这两个方法能分别打印(alert)id 和 price 的值。
+    function Pet(id, price) {
+      this.id = id;
+      this.price = price;
+      Pet.prototype.count++
+    }
+    Pet.prototype.count = 0
+    Pet.prototype.printID = function () {
+      alert(this.id)
+    }
+    Pet.prototype.printPrice = function () {
+      alert(this.price);
+    }
+    // 创建两个 Pet 类型的对象，并调用它们的 printID 和 printPrice 方法。
+    const p1 = new Pet(1, 100);
+    const p2 = new Pet(2, 200);
+    p1.printID();
+    p1.printPrice();
+    p2.printID();
+    p2.printPrice();
+    // 打印 Pet 类型的共享属性 count 的值，此时 count 的值应为 2。
+    console.log(p1.count);
+    // 定义构造函数Cat,要求 Cat 类型继承 Pet 类型，并增加自身的实例非共享属性color 及实例共享方法 printColor
+    function Cat(id, price, color) {
+      Pet.call(this, id, price)
+      this.color = color
+    }
+    Cat.prototype.__proto__ = Pet.prototype;
+    Cat.prototype.printColor = function () {
+      console.log(this.color);
+    }
+    // 创建一个 Cat 类型的对象，并调用它的 printID、printPrice 和 printColor 方法。
+    const c1 = new Cat(3, 100, "red");
+    c1.printID();
+    c1.printPrice();
+    c1.printColor();
+    // 定义构造函数PetShop,自定义一个类型 PetShop，拥有实例非共享属性 pets(该属性是一个数组对象，数组元素为 Pet 对象)
+    // 定义以下实例共享方法：
+    //   1、getPetCount: 返回 pets 数组的长度
+    //   2、addPet(pet): 添加一个 pet 对象到 pets 数组中
+    //   3、deletePet(petID): 根据 petID 号删除从 pets 数组中删除一个 pet 对象
+    //   4、setPetProperty(petID, property, value):找到 id 为 petID 的对象，并将该对象的 property属性值设置为 value。
+    //   5、添加一段代码，测试这几个方法的功能实现
+    function PetShop(pets) {
+      this.pets = pets;
+    }
+    PetShop.prototype.getPetcount = function () {
+      return this.pets.length;
+    };
+    PetShop.prototype.addPet = function (pet) {
+      this.pets.push(pet);
+    };
+    PetShop.prototype.deletePet = function (petID) {
+      const index = this.pets.findIndex(pet => pet.id === petID);
+      this.pets.splice(index, 1);
+    };
+    PetShop.prototype.setPetProperty = function (petID, property, value) {
+      const pet = this.pets.find(pet => pet.id === petID);
+      pet[property] = value;
+    };
+    // 创建一个 PetShop 类型的对象，并调用它的 getPetCount、addPet、deletePet 和 setPet
+    // Property 方法。
+    const ps = new PetShop([]);
+    ps.addPet(p1);
+    ps.addPet(p2);
+    ps.addPet(c1);
+    console.log(ps.getPetcount());
+
+    ps.deletePet(2);
+    ps.setPetProperty(1, "price", 150);
+    // 测试以上代码
+    console.log(ps.pets);
+    // 输出：
+    // 3
+    // [{ id: 1, price: 150},
+    //  { id: 3, price: 300, color: 'green' }]
+  </script>
+</body>
+
+</html>
