@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>改变DOM树练习</title>
+  <style>
+    .red {
+      color: red;
+    }
+
+    .blue {
+      color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>DOM Tree</h1>
+  <ul id="list">
+    <li class="red">list-item 1</li>
+    <li>list-item 2</li>
+    <li>list-item 3</li>
+    <li>list-item 4</li>
+  </ul>
+  <input type="button" value="改变列表" onclick="changeList()" />
+  <script>
+    function changeList() {
+      // 1. 将 1 节点和 4 节点互换位置
+      var list = document.getElementById('list');
+      var firstNode = list.firstElementChild;
+      var lastNode = list.lastElementChild;
+      firstNode.replaceWith(lastNode);
+      list.append(firstNode);
+
+      // 2. 设置 2 节点的样式
+      var secondNode = list.children[1];
+      secondNode.classList.add('blue');
+
+      // 3. 创建一个 New 节点
+      var newNode = document.createElement('li');
+      newNode.innerHTML = 'list-item New';
+
+      // 4. 在 3 节点的前面插入 New 节点
+      var thirdNode = list.children[2];
+      thirdNode.before(newNode);
+    }
+  </script>
+</body>
+
+</html>

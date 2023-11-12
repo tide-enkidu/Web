@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>动态创建DOM节点练习</title>
+</head>
+
+<body>
+  <form id="form">
+    <p>姓名: <input type="checkbox" value="姓名" /></p>
+    <p>年龄: <input type="checkbox" value="年龄" /></p>
+    <p>性别: <input type="checkbox" value="性别" /></p>
+    <input type="button" value="添加文本框" onclick="addTextField()" />
+  </form>
+  <script>
+    function addTextField() {
+      // 获取表单元素
+      let form = document.getElementById('form');
+
+      // 清除已存在的文本框
+      document.querySelectorAll('#form div').forEach((div) => {
+        div.remove();
+      });
+
+      // 创建一个对象，将复选框的值映射到对应的输入框名称
+      const inputNamesMap = {
+        '姓名': 'name1',
+        '年龄': 'age',
+        '性别': 'sex'
+      };
+
+      // 遍历每个复选框
+      document.querySelectorAll('#form>p>input[type="checkbox"]:checked').forEach((checkbox) => {
+        // 创建一个 div 元素
+        let divElement = document.createElement('div');
+
+        // 创建并设置 input 元素的 innerHTML
+        divElement.innerHTML = `${checkbox.value}：<input type="text" name="${inputNamesMap[checkbox.value]}">`;
+
+        // 将 div 元素添加到表单中
+        form.appendChild(divElement);
+      });
+    }
+  </script>
+</body>
+
+</html>
