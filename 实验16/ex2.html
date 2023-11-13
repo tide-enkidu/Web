@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>事件委托</title>
+</head>
+
+<body>
+  <ul id="buttonList">
+    <li><button>按钮 1</button></li>
+    <li><button>按钮 2</button></li>
+    <li><button>按钮 3</button></li>
+  </ul>
+  <div id="resultArea">结果：__</div>
+
+  <script>
+    const buttonList = document.getElementById("buttonList");
+    const resultArea = document.getElementById("resultArea");
+
+    /* 在此添加事件监听代码, 采用事件委托模式，在列表buttonList上添加click事件监听 */
+    // 点击任何按钮时，将按钮的文本内容追加到结果区域。
+    buttonList.addEventListener("click", function (event) {
+      if (event.target && event.target.nodeName === "BUTTON") {
+        resultArea.innerHTML = `结果：${event.target.innerHTML}`;
+      }
+    });
+  </script>
+</body>
+
+</html>

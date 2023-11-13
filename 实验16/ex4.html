@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>树形菜单</title>
+  <style>
+    ul {
+      padding-left: 20px;
+    }
+
+    ul ul {
+      display: none;
+    }
+
+    li {
+      cursor: pointer;
+    }
+
+    .show {
+      display: block !important;
+      /* 使用 !important 确保优先级 */
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="treeMenu">
+    <li>
+      Item 1
+      <ul>
+        <li>Subitem 1.1</li>
+        <li>Subitem 1.2</li>
+      </ul>
+    </li>
+    <li>
+      Item 2
+      <ul>
+        <li>Subitem 2.1</li>
+        <li>Subitem 2.2</li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+    const treeMenu = document.getElementById("treeMenu");
+    treeMenu.addEventListener("click", (event) => {
+      const target = event.target;
+      // 判断点击的元素是不是一个"LI"元素
+      if (target.nodeName === "LI") {
+        // 查找target下的ul类型的孩子元素
+        const childUL = target.querySelector("ul");
+        if (childUL) {
+          // 切换childUL元素的显示状态
+          // childUL.style.display = childUL.style.display === "none" ? "block" : "none";
+          childUL.classList.toggle("show");
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

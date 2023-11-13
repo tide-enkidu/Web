@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>点击计数器</title>
+</head>
+
+<body>
+  <button id="counterBtn">点击我</button>
+  <p id="countDisplay">计数：__</p>
+
+  <script>
+    const counterBtn = document.getElementById("counterBtn");
+    const countDisplay = document.getElementById("countDisplay");
+    let count = 0;
+
+    /* 在此添加事件监听代码, 在按钮counterBtn上添加click事件监听 */
+    counterBtn.addEventListener("click", function () {
+      count++;
+      countDisplay.innerHTML = `计数：${count}`;
+    })
+  </script>
+</body>
+
+</html>

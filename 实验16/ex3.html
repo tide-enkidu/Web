@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>键盘事件</title>
+  <style>
+    .red {
+      color: red;
+    }
+
+    .blue {
+      color: blue;
+    }
+
+    .black {
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="targetElement">按下一个键：__</div>
+
+  <script>
+    const targetElement = document.getElementById("targetElement");
+    const result = document.getElementById("result");
+
+    /* 在此添加事件监听代码, 在文档document上添加按下键盘keydown事件监听 */
+    document.addEventListener("keydown", (event) => {
+      // 填写空白处以获取按下的键
+      const pressedKey = event.key;
+      // 填写空白处以更新targetElement显示的内容
+      targetElement.innerHTML = `按下一个键：${pressedKey}`;
+      targetElement.classList.remove("red", "blue", "black");
+      // 填写空白处以定义不同键的操作，
+      // 如果按下'a'，targetElement采用red样式
+      // 如果按下'b'，targetElement采用blue样式
+      // 如果按的是其它键，targetElement采用black样式
+      switch (pressedKey) {
+        case "a":
+          targetElement.classList.add("red");
+          break;
+        case "b":
+          targetElement.classList.add("blue");
+          break;
+        default:
+          targetElement.classList.add("black");
+          break;
+      }
+    });
+
+  </script>
+</body>
+
+</html>
