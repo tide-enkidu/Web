@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>简单的回调函数</title>
+  </head>
+  <body>
+    <script>
+      // 创建一个函数 `getUserData`，接受一个用户ID和一个回调函数作为参数。
+      // 该函数应该模拟从数据库获取用户数据的异步操作，然后通过回调函数返回用户的对象。
+      function getUserData(userId,callback) {
+        // 模拟异步操作，1秒后返回数据
+        setTimeout(() => {
+          const userData={
+            id:userId,
+            username:'123',
+          }
+          callback(userData)
+        },1000)
+      }
+      getUserData(1,(userData)=>console.log('用户数据',userData))
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>多重回调</title>
+</head>
+
+<body>
+  <script>
+    // 创建一个函数 loadData，它模拟从服务器加载数据的异步操作。
+    // 该函数接受一个数据类型和一个回调函数。
+    // 如果数据加载成功，调用回调函数并传递加载的数据，否则传递一个错误消息。
+    function loadData(dataType, callback) {
+      setTimeout(() => {
+        const data = Math.random()
+        if (data > 0.33) {
+          callback(null, data)
+        }
+        else {
+          callback(`数据类型'${dataType}'加载失败`)
+        }
+      }, 1000)
+    }
+    // 调用loadData，加载数据类型typeA成功之后，再加载数据类型typeB
+    loadData('typeA', (err, data) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log('加载的typeA数据：', data);
+        loadData('typeB', (err, data) => {
+          if (err) {
+            console.log(err)
+          } else {
+            console.log('加载的typeB数据：', data);
+          }
+        })
+      }
+    })
+  </script>
+</body>
+
+</html>
