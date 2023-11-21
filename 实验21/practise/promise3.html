@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>使用fetch依次下载多张图片</title>
+</head>
+
+<body>
+  <div id="imageContainer"></div>
+  <script>
+    // 依次下载三张网络图片，并模拟每张图片至少需要下载1秒钟，在每张图片下载完成后将其显示在页面上。
+    // 采用递归的方式实现，如果期间有某张图片下载失败，则中断递归，不再下载后续图片
+    const imageContainer = document.getElementById("imageContainer");
+    const urls = ['../img/300.png', '../img/300.png', '../img/300.png']
+
+    // 函数processImage，用于处理图片
+    function processImage(index) {
+      // 如果索引小于urls的长度
+      if (index < urls.length) {
+        // 获取图片的url
+        const imageUrl = urls[index]
+        // 创建一个img元素
+        const imageElement = document.createElement("img")
+        // 获取图片的blob
+        fetch(imageUrl)
+          .then((response) => {
+            // 返回一个promise，延迟1s
+            return new Promise((resolve) => setTimeout(() => {
+              resolve(response)
+            }, 1000))
+          })
+          .then((response) => {
+            // 如果响应状态不是ok，抛出错误
+            if (!response.ok) {
+              throw new Error(`下载图片${imageUrl}`)
+            }
+            // 返回blob
+            return response.blob()
+          })
+          .then((blob) => {
+            // 创建一个blobUrl
+            const blobUrl = URL.createObjectURL(blob)
+            // 设置图片的src
+            imageElement.src = blobUrl
+            // 将图片添加到容器中
+            imageContainer.appendChild(imageElement)
+            // 递归调用processImage
+            processImage(index + 1)
+          })
+          .catch((error) => {
+            // 打印错误信息
+            console.log(error.message)
+            return
+          })
+      }
+    }
+    processImage(0)
+  </script>
+</body>
+
+</html>

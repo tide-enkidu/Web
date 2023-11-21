@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>使用Promise.all同时下载多张图片</title>
+</head>
+
+<body>
+  <div id="imageContainer"></div>
+  <script>
+    // 同时下载三张网络图片，模拟每张图片至少需要下载1秒钟。
+    // 等三张图片都下载好后，将它们显示在网页上。
+    // 如果有任何一张图片下载出现了问题，则报错。
+    const imageContainer = document.getElementById("imageContainer");
+    const urls = ['../img/300.png', '../img/300.png', '../img/300.png']
+    const imgs = []
+
+    // 定义一个函数processImage，用于处理图片
+    function processImage(url, index) {
+      return new Promise((resolve, reject) => {
+        // 创建一个img元素
+        const imageElement = document.createElement('img')
+        // 返回一个Promise，用于获取图片
+        return fetch(url)
+          .then((response) => {
+            // 返回一个Promise，用于设置延迟
+            return new Promise((resolve) => setTimeout(() => resolve(response), 1000))
+          })
+          .then((response) => {
+            // 如果图片下载失败，则返回reject
+            if (!response.ok) {
+              reject(`下载图片${url}失败`)
+            }
+            // 返回图片的blob
+            return response.blob()
+          })
+          .then((blob) => {
+            // 创建一个图片的blobUrl
+            const blobUrl = URL.createObjectURL(blob)
+            // 将blobUrl赋值给imageElement
+            imageElement.src = blobUrl
+            // 将imageElement添加到imgs数组中
+            imgs[index] = imageElement
+            // 返回图片下载成功
+            resolve(`下载图片${url}成功`)
+          })
+      })
+    }
+    // 将urls数组中的每一个url都传入processImage函数，并将返回的Promise放入promises数组中
+    const promises = urls.map((url, index) => processImage(url, index))
+    // 等待所有Promise都完成，然后执行回调函数
+    Promise.all(promises)
+      .then(() => {
+        // 将imgs数组中的每一个图片添加到imageContainer中
+        imgs.forEach(img => imageContainer.appendChild(img))
+      })
+      .catch(err => console.log(err))
+
+
+  </script>
+</body>
+
+</html>

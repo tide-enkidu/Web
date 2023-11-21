@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>使用async和await依次下载多张图片</title>
+</head>
+
+<body>
+  <div id="imageContainer"></div>
+  <script>
+    // 依次下载三张网络图片，并模拟每张图片至少需要下载1秒钟，在每张图片下载完成后将其显示在页面上。
+    // 采用async和await的方式实现，如果期间有某张图片下载失败，则在异步函数内返回，不再下载后续图片
+
+    // 获取图片容器元素
+    const imageContainer = document.getElementById("imageContainer");
+
+    // 图片链接数组
+    const urls = ['../img/300.png', '../img/300.png', '../img/300.png']
+
+    // 异步函数，处理图片
+    async function processImages() {
+      // 遍历图片链接数组
+      for (const url of urls) {
+        // 创建一个图片元素
+        const imageElement = document.createElement('img')
+
+        // 使用 fetch 方法获取图片数据
+        const response = await fetch(url)
+
+        // 等待1秒钟
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+
+        // 检查图片获取是否成功
+        if (!response.ok) {
+          console.error(`下载图片${url}失败`)
+          return
+        }
+
+        // 转换获取的图片数据为 Blob 对象
+        const blob = await response.blob()
+
+        // 通过 Blob URL 创建一个 URL
+        const blobUrl = URL.createObjectURL(blob)
+
+        // 设置图片元素的 src 属性为 Blob URL
+        imageElement.src = blobUrl
+
+        // 将图片元素添加到图片容器中
+        imageContainer.appendChild(imageElement)
+      }
+    }
+
+    // 调用处理图片的函数
+    processImages()
+
+  </script>
+</body>
+
+</html>
