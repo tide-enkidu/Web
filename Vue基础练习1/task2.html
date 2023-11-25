@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>下拉二级菜单</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .wrap {
+      width: 600px;
+      margin: 100px auto;
+    }
+
+    .wrap li {
+      list-style-type: none;
+    }
+
+    .wrap>ul>li {
+      float: left;
+      margin-right: 10px;
+      position: relative;
+    }
+
+    .wrap a {
+      text-decoration: none;
+      display: block;
+      color: #fff;
+      width: 120px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border: 1px solid #fff;
+      border-width: 1px 1px 0 0;
+      background-color: #255f9e;
+    }
+
+    .wrap li ul {
+      position: absolute;
+      display: block;
+    }
+
+    .wrap ul li a:hover {
+      color: #fff;
+      background: #ffb100
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <div class="wrap">
+      <ul>
+        <li v-for="(menu,index) in menus" :key="index" @mouseover="menu.show=!menu.show" @mouseout="menu.show=!menu.show">
+          <a v-bind:href="menu.url">{{menu.name}}</a>
+          <ul v-show="menu.show">
+            <li v-for="(sub,index) in menu.subMenus" :key="index"><a v-bind:href="sub.url">{{sub.name}}</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        menus: [
+          {
+            name: '我的淘宝', url: '#', show: false, subMenus: [
+              { name: '已买到的宝贝', url: '#' },
+              { name: '已卖出的宝贝', url: '#' }
+            ]
+          },
+          {
+            name: '收藏夹', url: '#', show: false, subMenus: [
+              { name: '收藏的宝贝', url: '#' },
+              { name: '收藏的店铺', url: '#' }
+            ]
+          },
+          // {
+          //   name:'收藏夹',url:'#',show:false,subMenus:[
+          //     {name:'收藏的宝贝',url:'#'},
+          //     {name:'收藏的店铺',url:'#'}
+          //   ]
+          // }
+        ]
+      }, methods: {
+
+      }
+    }
+    )
+  </script>
+</body>
+
+</html>

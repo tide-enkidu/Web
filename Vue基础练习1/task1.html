@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>简单猜数游戏</title>
+</head>
+
+<body>
+  <div id="app">
+    <input placeholder="猜数游戏" @keyup.enter="guess" v-model.number="inputValue" type="number" />
+    <button @click="guess">猜一下</button>
+    <p>{{msg}}</p>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    const data = {
+      msg: '请猜一个1~100之间的整数',
+      inputValue: null,
+    }
+    const random = Math.floor(Math.random() * 101)
+    console.log(random);
+    new Vue({
+      el: '#app',
+      data: data,
+      methods: {
+        guess: function (event) {
+          const value = Number.parseInt(data.inputValue)
+          if (!Number.isInteger(value)) {
+            data.msg = '请输入一个整数'
+          } else if (random > value) {
+            data.msg = '猜小了'
+          } else if (random < value) {
+            data.msg = '猜大了'
+          } else {
+            data.msg = '猜对了'
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

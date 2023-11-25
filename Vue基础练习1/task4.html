@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>记事本-原生</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+    body {
+      width: 100%;
+      display: flex;
+      font-size: 25px;
+      color: #c5c8c6;
+    }
+
+    #node {
+      width: 400px;
+      margin: 50px auto;
+      padding: 15px;
+      background-color: #ebebeb;
+    }
+
+    #node section {
+      width: 100%;
+    }
+
+    #node h2 {
+      color: #c27139;
+    }
+
+    #node input {
+      width: 100%;
+      height: 30px;
+      border: 0;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    #node li {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      background-color: ghostwhite;
+      border-bottom: 1px solid #c0c0c0;
+    }
+
+    #node li button {
+      float: right;
+      margin-top: 5px;
+    }
+
+    #node .statistics {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      background-color: ghostwhite;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      box-shadow: 0px 5px 2px #c0c5ce;
+    }
+
+    #node .statistics button {
+      /* float:right; */
+      border: 0;
+    }
+
+    #node .footer {
+      font-size: 20px;
+      text-align: center;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <section id="node">
+    <!-- 输入框 -->
+    <section class="header">
+      <h2>记事本</h2>
+      <input type="text" placeholder="请输入任务" v-model="inputValue" v-on:keyup.enter="add()" @click="inputValue=''" />
+    </section>
+    <!-- 列表区 -->
+    <section class="main">
+      <ul>
+        <li v-for="(item,index) in list" v-bind:key="index">
+          <span>{{index+1}}</span>
+          <label>{{item}}</label>
+          <button @click="remove(index)">删除</button>
+        </li>
+
+      </ul>
+    </section>
+    <!-- 统计和清空区 -->
+    <section class="statistics">
+      <span id="statics">{{list.length}}条记录</span>
+      <button @click="list=[]">清空</button>
+    </section>
+    <section class="footer">
+      <p>copyRight</p>
+    </section>
+  </section>
+  <script src="./vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#node',
+      data: {
+        inputValue: '',
+        list: ['好好学习', '好好休息', '好好学习']
+      },
+      methods: {
+        add() {
+          this.list.push(this.inputValue)
+          this.inputValue = ''
+        },
+        remove(index) {
+          this.list.splice(index, 1)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
