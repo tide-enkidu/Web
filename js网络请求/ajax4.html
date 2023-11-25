@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>使用axios发送网络请求</title>
+</head>
+
+<body>
+  <form id="loginForm">
+    <div>
+      <label for="username">用户名：</label>
+      <input name="username"></input>
+    </div>
+    <div>
+      <label for="password">密码：</label>
+      <input type="password" name="password"></input>
+    </div>
+    <div>
+      <button type="submit">登录</button>
+    </div>
+  </form>
+  <hr />
+  <div id="selfInfo" style="border: 1px solid red;">
+    用户个人信息：
+  </div>
+
+  <script src="./axios.min.js"></script>
+  <script>
+    // 异步函数，依次请求 用户登录 和 获取用户个人信息 接口
+    async function login(data) {
+      let resp = await axios.post('/api/rest/user/login', data)
+      if (resp.status !== 200) {
+        return Promise.reject('用户登录失败')
+      }
+      console.log('用户登录成功，接下来请求用户个人信息');
+      resp = await axios.get('/api/rest/self')
+      if (resp.status !== 200) {
+        return Promise.reject('获取用户个人信息失败')
+      }
+      console.log('获取用户个人信息成功，将其显示在页面上');
+      return resp.data
+    }
+
+    // 当 DOM 准备就绪后，再执行JS代码
+    document.addEventListener('DOMContentLoaded', () => {
+      const loginForm = document.getElementById('loginForm')
+      loginForm.addEventListener('submit', (event) => {
+        event.preventDefault()
+        let formData = new FormData(document.forms.loginForm)
+        login(formData).then(json => {
+          const selfInfo = document.getElementById('selfInfo')
+          selfInfo.innerHTML += JSON.stringify(json)
+        }).catch(err => console.log(err))
+      })
+    })
+  </script>
+</body>
+
+</html>

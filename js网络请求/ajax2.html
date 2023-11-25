@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>使用jQuery.ajax发送网络请求</title>
+</head>
+
+<body>
+  <form id="loginForm">
+    <div>
+      <label for="username">用户名：</label>
+      <input name="username"></input>
+    </div>
+    <div>
+      <label for="password">密码：</label>
+      <input type="password" name="password"></input>
+    </div>
+    <div>
+      <button type="submit">登录</button>
+    </div>
+  </form>
+  <hr />
+  <div id="selfInfo" style="border: 1px solid red;">
+    用户个人信息：
+  </div>
+
+  <script src="./jquery-2.1.4.min.js"></script>
+  <script>
+    // 当 DOM 准备就绪后，再执行JS代码
+    $(function (){
+      $('#loginForm').submit((event)=>{
+        event.preventDefault()
+        $.ajax({
+          url:'/api/rest/user/login',
+          method:'POST',
+          data:$('#loginForm').serialize(),
+          success:(resp)=>{
+            console.log('用户登录成功，接下来请求用户个人信息');
+            $.ajax({
+              url:'/api/rest/self',
+              success:(resp)=>{
+                console.log('获取用户个人信息成功，将其显示在页面上');
+                $('#selfInfo').text(`用户个人信息：${JSON.stringify(resp)}`)
+              }
+            })
+          },
+          error:(err)=>{
+            console.log('用户登录失败');
+          }
+        })
+      })
+    })
+  </script>
+</body>
+
+</html>
