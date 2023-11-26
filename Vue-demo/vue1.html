@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{title}}</h1>
+    <input type="text" v-model="newTask" placeholder="添加新任务" @keyup.enter="addTask">
+    <ul>
+      <li v-for="(task,index) in tasks" :key="index">
+        <span>{{task}}</span>
+        <button @click="remove(index)">删除</button>
+      </li>
+    </ul>
+    <div v-if="tasks.length===0">
+      <p>还没有任务，请添加一些任务</p>
+    </div>
+  </div>
+
+  <script src="./vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        title: "任务清单示例",
+        newTask: "",
+        tasks: []
+      },
+      methods: {
+        addTask: function () {
+          this.tasks.push(this.newTask)
+          this.newTask = ""
+        },
+        remove: function (index) {
+          this.tasks.splice(index, 1)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
