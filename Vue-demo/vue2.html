@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{title}}</h1>
+    <!-- 在子组件实例上监听"add-task事件"，事件处理程序是addTask方法 -->
+    <task-input @add-task="addTask"></task-input>
+    <!-- 在子组件实例上绑定自定义特效 :task的值为父组件数据对象data中的tasks -->
+    <task-list :tasks="tasks" @remove-task="removeTask"></task-list>
+    <div v-if="tasks.length===0">
+      <p>还没有任务，请添加一些任务</p>
+    </div>
+  </div>
+
+  <!-- 组件task-input的UI -->
+  <template id="task-input">
+    <div>
+      <input type="text" placeholder="添加新任务" v-model="newTask" @keyup.enter="addTask">
+    </div>
+  </template>
+
+  <!-- 组件task-list的UI -->
+  <template id="task-list">
+    <div>
+      <ul>
+        <li v-for="(task,index) in tasks" :key="index">
+          {{task}}
+          <button @click="removeTask(index)">删除</button>
+        </li>
+      </ul>
+    </div>
+  </template>
+  <script src="./vue.js"></script>
+  <script>
+
+    // 注册组件task-input
+    Vue.component('task-input', {
+      template: '#task-input',
+      data: function () {
+        return {
+          newTask: ''
+        }
+      },
+      methods: {
+        addTask: function () {
+          if (this.newTask.trim() != '') {
+            this.$emit('add-task', this.newTask.trim())
+            this.newTask = ''
+          }
+        }
+      },
+    })
+
+    // 注册组件task-list
+    Vue.component('task-list', {
+      template: '#task-list',
+      props: ['tasks'],
+      methods: {
+        removeTask: function (index) {
+          this.$emit('remove-task', index)
+        }
+      }
+    })
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        title: '任务清单示例，父子组件',
+        tasks: []
+      },
+      methods: {
+        addTask: function (task) {
+          this.tasks.push(task)
+        },
+        removeTask: function (index) {
+          this.tasks.splice(index, 1)
+        }
+      }
+    })
+
+
+  </script>
+</body>
+
+</html>
